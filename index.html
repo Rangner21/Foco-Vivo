@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#080f0a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>FocoVivo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== APP SHELL ===== -->
+
+  <div id="app">
+
+```
+<!-- SCREENS -->
+<div id="screen-hoje" class="screen active">
+  <div class="screen-scroll">
+    <header class="top-header">
+      <div>
+        <p class="greeting" id="greeting-text">Bom dia, Rangner!</p>
+        <p class="focus-phrase" id="focus-phrase">Cada minuto de foco constrói o futuro.</p>
+      </div>
+      <div class="avatar" id="user-avatar">R</div>
+    </header>
+
+    <!-- Foco do Dia -->
+    <section class="section">
+      <div class="card card-focus" id="focus-card">
+        <div class="card-focus-left">
+          <span class="label-tag">🎯 Foco do Dia</span>
+          <h2 class="focus-title" id="focus-title-text">Nenhum foco definido</h2>
+          <p class="focus-sub" id="focus-sub-text">Adicione uma tarefa principal</p>
+        </div>
+        <div class="progress-ring-wrap">
+          <svg class="progress-ring" viewBox="0 0 64 64">
+            <circle class="ring-bg" cx="32" cy="32" r="26"/>
+            <circle class="ring-fill" id="ring-fill" cx="32" cy="32" r="26"
+              stroke-dasharray="163.4"
+              stroke-dashoffset="163.4"/>
+          </svg>
+          <span class="ring-pct" id="ring-pct">0%</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tempo disponível -->
+    <section class="section">
+      <h3 class="section-title">Quanto tempo você tem?</h3>
+      <div class="time-chips" id="time-chips">
+        <button class="chip" data-min="5">5 min</button>
+        <button class="chip" data-min="15">15 min</button>
+        <button class="chip" data-min="30">30 min</button>
+        <button class="chip" data-min="60">1 hora</button>
+        <button class="chip" data-min="999">+ mais</button>
+      </div>
+    </section>
+
+    <!-- Próximas Ações -->
+    <section class="section">
+      <div class="section-header">
+        <h3 class="section-title">Próximas Ações</h3>
+        <span class="task-count" id="task-count">0 tarefas</span>
+      </div>
+      <div id="task-list" class="task-list">
+        <div class="empty-state" id="empty-tasks">
+          <span class="empty-icon">✦</span>
+          <p>Nenhuma tarefa ainda.<br>Toque em + para adicionar.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resumo -->
+    <section class="section">
+      <div class="summary-row">
+        <div class="summary-card">
+          <span class="summary-num" id="sum-done">0</span>
+          <span class="summary-label">Concluídas</span>
+        </div>
+        <div class="summary-card">
+          <span class="summary-num" id="sum-pending">0</span>
+          <span class="summary-label">Pendentes</span>
+        </div>
+        <div class="summary-card">
+          <span class="summary-num" id="sum-mins">0</span>
+          <span class="summary-label">Min foco</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="bottom-space"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN FOCO ===== -->
+<div id="screen-foco" class="screen">
+  <div class="screen-scroll center-content">
+    <div class="foco-wrap">
+      <p class="label-tag center">🔥 Modo Foco</p>
+      <h2 class="foco-task-title" id="foco-task-title">Selecione uma tarefa</h2>
+      <p class="foco-step" id="foco-step">—</p>
+
+      <!-- Timer -->
+      <div class="timer-ring-wrap">
+        <svg class="timer-ring" viewBox="0 0 200 200">
+          <circle class="ring-bg" cx="100" cy="100" r="88"/>
+          <circle class="timer-fill" id="timer-fill" cx="100" cy="100" r="88"
+            stroke-dasharray="553"
+            stroke-dashoffset="0"/>
+        </svg>
+        <div class="timer-inner">
+          <span class="timer-display" id="timer-display">25:00</span>
+          <span class="timer-label">pomodoro</span>
+        </div>
+      </div>
+
+      <!-- Timer controls -->
+      <div class="timer-controls">
+        <button class="btn-icon" id="btn-reset" title="Reiniciar">↺</button>
+        <button class="btn-primary-big" id="btn-start-timer">▶ Iniciar</button>
+        <button class="btn-icon" id="btn-done-task" title="Concluir tarefa">✓</button>
+      </div>
+
+      <!-- Sessão Pomodoro selector -->
+      <div class="pomo-selector">
+        <button class="chip small" data-pomo="25" id="pomo-25">25 min</button>
+        <button class="chip small active" data-pomo="45" id="pomo-45">45 min</button>
+        <button class="chip small" data-pomo="60" id="pomo-60">60 min</button>
+      </div>
+
+      <!-- Select task for focus -->
+      <div class="focus-pick-wrap" id="focus-pick-wrap">
+        <p class="hint-text">Selecionar tarefa para focar:</p>
+        <div id="focus-pick-list" class="focus-pick-list"></div>
+      </div>
+    </div>
+    <div class="bottom-space"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN ÁREAS ===== -->
+<div id="screen-areas" class="screen">
+  <div class="screen-scroll">
+    <header class="top-header simple">
+      <h1 class="page-title">Áreas</h1>
+    </header>
+    <section class="section">
+      <div class="areas-grid" id="areas-grid">
+        <!-- rendered by JS -->
+      </div>
+    </section>
+    <div class="bottom-space"></div>
+  </div>
+</div>
+
+<!-- ===== SCREEN PERFIL ===== -->
+<div id="screen-perfil" class="screen">
+  <div class="screen-scroll">
+    <header class="top-header simple">
+      <h1 class="page-title">Perfil</h1>
+    </header>
+    <section class="section">
+      <div class="profile-hero">
+        <div class="profile-avatar" id="profile-avatar">R</div>
+        <h2 class="profile-name" id="profile-name">Rangner</h2>
+        <p class="profile-sub">Focado e presente</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-icon">🔥</span>
+          <span class="stat-val" id="stat-streak">0</span>
+          <span class="stat-lbl">dias seguidos</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">⏱</span>
+          <span class="stat-val" id="stat-total-min">0</span>
+          <span class="stat-lbl">min de foco</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">✅</span>
+          <span class="stat-val" id="stat-done">0</span>
+          <span class="stat-lbl">concluídas</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">⚡</span>
+          <span class="stat-val" id="stat-pomos">0</span>
+          <span class="stat-lbl">pomodoros</span>
+        </div>
+      </div>
+
+      <!-- Edit name -->
+      <div class="card card-flat" style="margin-top:20px">
+        <label class="field-label">Seu nome</label>
+        <div class="input-row">
+          <input type="text" id="input-name" class="input-field" placeholder="Seu nome" />
+          <button class="btn-save" id="btn-save-name">Salvar</button>
+        </div>
+      </div>
+
+      <button class="btn-danger" id="btn-clear-data">Limpar todos os dados</button>
+    </section>
+    <div class="bottom-space"></div>
+  </div>
+</div>
+
+<!-- ===== BOTTOM NAV ===== -->
+<nav class="bottom-nav">
+  <button class="nav-btn active" data-screen="hoje">
+    <svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9"/><path d="M9 21V12h6v9"/></svg>
+    <span>Hoje</span>
+  </button>
+  <button class="nav-btn" data-screen="foco">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8" stroke-dasharray="2 2"/><circle cx="12" cy="12" r="11"/></svg>
+    <span>Foco</span>
+  </button>
+  <button class="nav-btn nav-add" id="btn-add-task">
+    <div class="add-bubble">
+      <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </div>
+    <span>Adicionar</span>
+  </button>
+  <button class="nav-btn" data-screen="areas">
+    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+    <span>Áreas</span>
+  </button>
+  <button class="nav-btn" data-screen="perfil">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+    <span>Perfil</span>
+  </button>
+</nav>
+```
+
+  </div><!-- end #app -->
+
+  <!-- ===== MODAL ADICIONAR TAREFA ===== -->
+
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal" id="modal-add">
+      <div class="modal-handle"></div>
+      <h3 class="modal-title">Nova Tarefa</h3>
+
+```
+  <label class="field-label">Título *</label>
+  <input type="text" id="task-title-input" class="input-field" placeholder="O que precisa ser feito?" />
+
+  <label class="field-label">Próximo passo</label>
+  <input type="text" id="task-step-input" class="input-field" placeholder="Ação específica..." />
+
+  <label class="field-label">Área</label>
+  <div class="chip-select" id="area-select">
+    <button class="chip small area-chip active" data-area="Estudos">📚 Estudos</button>
+    <button class="chip small area-chip" data-area="Trabalho">💼 Trabalho</button>
+    <button class="chip small area-chip" data-area="Saúde">🏃 Saúde</button>
+    <button class="chip small area-chip" data-area="Casa">🏠 Casa</button>
+    <button class="chip small area-chip" data-area="Finanças">💰 Finanças</button>
+    <button class="chip small area-chip" data-area="Projetos">🚀 Projetos</button>
+    <button class="chip small area-chip" data-area="Família">❤️ Família</button>
+    <button class="chip small area-chip" data-area="Ideias">💡 Ideias</button>
+  </div>
+
+  <label class="field-label">Duração estimada</label>
+  <div class="chip-select" id="dur-select">
+    <button class="chip small dur-chip" data-min="5">5 min</button>
+    <button class="chip small dur-chip active" data-min="15">15 min</button>
+    <button class="chip small dur-chip" data-min="30">30 min</button>
+    <button class="chip small dur-chip" data-min="60">1 hora</button>
+    <button class="chip small dur-chip" data-min="90">1h30</button>
+  </div>
+
+  <label class="field-label">Prioridade</label>
+  <div class="chip-select" id="prio-select">
+    <button class="chip small prio-chip active" data-prio="alta">🔴 Alta</button>
+    <button class="chip small prio-chip" data-prio="média">🟡 Média</button>
+    <button class="chip small prio-chip" data-prio="baixa">🟢 Baixa</button>
+  </div>
+
+  <div class="modal-actions">
+    <button class="btn-ghost" id="btn-cancel-modal">Cancelar</button>
+    <button class="btn-primary" id="btn-save-task">Salvar tarefa</button>
+  </div>
+</div>
+```
+
+  </div>
+
+  <!-- ===== TOAST ===== -->
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
