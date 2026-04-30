@@ -1,4 +1,4 @@
-const CACHE_NAME = 'focovivo-cache-v1';
+const CACHE_NAME = 'focovivo-cache-v10';
 const FILES_TO_CACHE = [
   './',
   './index.html',
@@ -6,7 +6,9 @@ const FILES_TO_CACHE = [
   './app.js',
   './manifest.json',
   './icon-192.png',
-  './icon-512.png'
+  './icon-512.png',
+  './apple-touch-icon.png',
+  './logo-app.png'
 ];
 
 self.addEventListener('install', event => {

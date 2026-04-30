@@ -995,3 +995,80 @@ body {
 @media (min-width: 431px) {
   body { background: #05070a; }
 }
+
+
+/* =====================================================
+   IDENTIDADE VISUAL — Logo alvo + check FocoVivo
+   ===================================================== */
+
+.brand-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.brand-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 8px 18px rgba(0,0,0,.28);
+}
+
+.profile-logo {
+  width: 86px;
+  height: 86px;
+  border-radius: 24px;
+  object-fit: cover;
+  margin-bottom: 12px;
+  box-shadow: 0 14px 28px rgba(0,0,0,.35);
+}
+
+.profile-hero .profile-avatar {
+  display: none;
+}
+
+.top-header {
+  gap: 12px;
+}
+
+.greeting {
+  font-size: 20px;
+}
+
+.focus-phrase {
+  max-width: 260px;
+}
+
+.card-focus {
+  background:
+    radial-gradient(circle at 88% 20%, rgba(184,217,79,.13), transparent 32%),
+    linear-gradient(135deg, rgba(255,255,255,.045), rgba(255,255,255,.012)),
+    var(--card);
+}
+
+.add-bubble {
+  border: 1px solid rgba(255,255,255,.18);
+}
+
+.task-check.checked {
+  box-shadow: 0 0 0 3px rgba(184,217,79,.10);
+}
+
+@media (max-width: 360px) {
+  .brand-logo {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+  }
+
+  .greeting {
+    font-size: 18px;
+  }
+
+  .focus-phrase {
+    font-size: 12px;
+  }
+}

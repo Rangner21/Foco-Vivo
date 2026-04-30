@@ -10,13 +10,13 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="FocoVivo" />
-  <link rel="apple-touch-icon" href="./icon-192.png" />
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./style.css?v=9" />
+  <link rel="stylesheet" href="./style.css?v=10" />
 </head>
 <body>
 
@@ -28,9 +28,12 @@
 <div id="screen-hoje" class="screen active">
   <div class="screen-scroll">
     <header class="top-header">
-      <div>
-        <p class="greeting" id="greeting-text">Bom dia, Rangner!</p>
-        <p class="focus-phrase" id="focus-phrase">Cada minuto de foco constrói o futuro.</p>
+      <div class="brand-head">
+        <img src="./logo-app.png" alt="FocoVivo" class="brand-logo" />
+        <div>
+          <p class="greeting" id="greeting-text">Bom dia, Rangner!</p>
+          <p class="focus-phrase" id="focus-phrase">Cada minuto de foco constrói o futuro.</p>
+        </div>
       </div>
       <div class="avatar" id="user-avatar">R</div>
     </header>
@@ -172,6 +175,7 @@
     </header>
     <section class="section">
       <div class="profile-hero">
+        <img src="./logo-app.png" alt="FocoVivo" class="profile-logo" />
         <div class="profile-avatar" id="profile-avatar">R</div>
         <h2 class="profile-name" id="profile-name">Rangner</h2>
         <p class="profile-sub">Focado e presente</p>
@@ -294,7 +298,7 @@
   <!-- ===== TOAST ===== -->
 
   <div id="toast" class="toast hidden"></div>
-<script src="./app.js?v=9"></script>
+<script src="./app.js?v=10"></script>
 
 </body>
 </html>
