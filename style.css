@@ -817,3 +817,181 @@ body {
   }
   body { background: #04080a; }
 }
+
+/* =====================================================
+   AJUSTE VISUAL — menos verde / mais profissional
+   ===================================================== */
+
+:root {
+  --bg:        #0b0f14;
+  --bg2:       #101720;
+  --bg3:       #17202b;
+  --card:      #121a24;
+  --card2:     #182331;
+  --border:    #273241;
+
+  --green:     #b8d94f;
+  --green2:    #d7ef72;
+  --green-dim: rgba(184, 217, 79, .11);
+  --green-glow:rgba(184, 217, 79, .16);
+
+  --text:      #eef3f8;
+  --text2:     #a6b1bf;
+  --text3:     #6f7b8a;
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(184, 217, 79, .08), transparent 34%),
+    radial-gradient(circle at top right, rgba(96, 165, 250, .08), transparent 30%),
+    var(--bg);
+}
+
+#app {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.025), transparent 20%),
+    var(--bg);
+}
+
+.card,
+.card-flat,
+.task-item,
+.summary-card,
+.area-card,
+.stat-card,
+.focus-pick-item {
+  background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.008)), var(--card);
+  border-color: var(--border);
+  box-shadow: 0 8px 24px rgba(0,0,0,.20);
+}
+
+.card-focus {
+  background:
+    linear-gradient(135deg, rgba(184,217,79,.10), transparent 45%),
+    linear-gradient(180deg, var(--card2), var(--card));
+  border-color: rgba(255,255,255,.08);
+}
+
+.summary-num,
+.stat-val {
+  color: var(--text);
+}
+
+.label-tag,
+.ring-pct,
+.nav-btn.active,
+.nav-btn:hover {
+  color: var(--green2);
+}
+
+.avatar,
+.profile-avatar {
+  background: linear-gradient(145deg, #1b2633, #111820);
+  border-color: var(--border);
+  color: var(--green2);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 8px 20px rgba(0,0,0,.20);
+}
+
+.btn-primary,
+.btn-primary-big,
+.add-bubble {
+  background: linear-gradient(180deg, var(--green2), var(--green));
+  color: #101720;
+  box-shadow: 0 8px 20px rgba(184,217,79,.16);
+}
+
+.btn-primary:hover,
+.btn-primary-big:hover {
+  filter: brightness(1.04);
+}
+
+.btn-ghost,
+.btn-icon,
+.btn-save {
+  background: #182331;
+  border-color: var(--border);
+  color: var(--text2);
+}
+
+.btn-save {
+  color: var(--green2);
+  border-color: rgba(184,217,79,.42);
+}
+
+.chip {
+  background: #141d28;
+  border-color: var(--border);
+  color: var(--text2);
+}
+
+.chip:hover,
+.chip.active {
+  background: rgba(184,217,79,.10);
+  border-color: rgba(184,217,79,.50);
+  color: var(--green2);
+}
+
+.task-item.selected {
+  border-color: rgba(184,217,79,.48);
+  background:
+    linear-gradient(90deg, rgba(184,217,79,.10), transparent 75%),
+    var(--card);
+}
+
+.task-item::before {
+  background: var(--green);
+}
+
+.task-check.checked {
+  background: var(--green);
+  border-color: var(--green);
+}
+
+.task-check.checked::after {
+  color: #101720;
+}
+
+.prio-baixa {
+  background: #60a5fa;
+}
+
+.bottom-nav {
+  background: rgba(9, 13, 19, .92);
+  border-top-color: var(--border);
+}
+
+.modal {
+  background: linear-gradient(180deg, var(--bg2), var(--bg));
+  border-color: var(--border);
+}
+
+.input-field {
+  background: #17202b;
+  border-color: var(--border);
+}
+
+.input-field:focus {
+  border-color: rgba(184,217,79,.50);
+  background: #1a2531;
+}
+
+.toast {
+  background: #182331;
+  border-color: rgba(184,217,79,.45);
+  color: var(--green2);
+}
+
+.btn-danger {
+  background: rgba(248,113,113,.06);
+  border-color: rgba(248,113,113,.22);
+  color: #fca5a5;
+}
+
+.btn-danger:hover {
+  background: rgba(248,113,113,.10);
+  border-color: var(--red);
+}
+
+@media (min-width: 431px) {
+  body { background: #05070a; }
+}
